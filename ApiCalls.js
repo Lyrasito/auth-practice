@@ -8,8 +8,17 @@ export const login = async (username, password) => {
     },
   };
   const response = await fetch(url, fetchOptions);
-  const jsonResponse = await response.json();
-  console.log(jsonResponse);
+  console.log(response.status)
+  if(response.status === 200) {
+    const jsonResponse = await response.json();
+    const token  = "butt";
+    localStorage.setItem("token", token);
+} else {
+    localStorage.clear()
+    console.log(localStorage.getItem("token"))
+    throw new Error("Invalid username/password")
+    
+  }
 };
 
 //login("user", "password");
